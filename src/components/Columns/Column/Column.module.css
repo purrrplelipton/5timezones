@@ -1,0 +1,24 @@
+.Column {
+    width: 20%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.Region {
+    font-size: 2rem;
+    font-weight: normal;
+}
+
+.Time {
+    font-size: 8rem;
+    font-weight: normal;
+}
+
+.Diem {
+    font-size: 2rem;
+}
+
+.Date {
+    font-size: 1.75rem;
+}

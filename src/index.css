@@ -1,3 +1,14 @@
-body {
-  font-family: SF Pro Text;
+*::before, *, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+  user-select: none;
+  text-align: center;
+  /* outline: 1px solid red; */
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
 }
