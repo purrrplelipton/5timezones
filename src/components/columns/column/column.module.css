@@ -1,0 +1,43 @@
+.Column {
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.Wrapper {
+  width: 100%;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Region {
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.Region > * {
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.Continent {
+  font-weight: 300;
+}
+
+.Name {
+  color: #212121;
+}
+
+.Time {
+  font-size: 5rem;
+  font-weight: 700;
+}
+
+.Date {
+  font-size: 1.5rem;
+  font-weight: 300;
+}
