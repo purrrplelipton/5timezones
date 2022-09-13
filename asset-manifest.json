@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/5timezones/static/css/main.59f324dd.css",
+    "main.js": "/5timezones/static/js/main.c04a5f61.js",
+    "index.html": "/5timezones/index.html",
+    "main.59f324dd.css.map": "/5timezones/static/css/main.59f324dd.css.map",
+    "main.c04a5f61.js.map": "/5timezones/static/js/main.c04a5f61.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.59f324dd.css",
+    "static/js/main.c04a5f61.js"
+  ]
+}
