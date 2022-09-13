@@ -69,7 +69,7 @@
       "react-app/jest"
     ],
     "env": {
-      "NODE_ENV": "development"
+      "BABEL_ENV": "development"
     }
   },
   "browserslist": {
