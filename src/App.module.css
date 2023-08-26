@@ -34,7 +34,7 @@
 }
 
 .region-country {
-  max-width: 50%;
+  width: 50%;
   overflow: hidden;
   display: flex;
   flex-flow: column nowrap;
@@ -52,36 +52,39 @@
 .country-name {
   font-size: 1em;
   line-height: 1.25;
+  white-space: nowrap;
 }
 
 .scrolling-text {
-  overflow: auto hidden;
-  white-space: nowrap;
-  animation: scroll 10s linear alternate infinite;
+  overflow: hidden;
+  animation: scroll 10s linear infinite;
 }
 
 .region-country:has(.scrolling-text)::before,
 .region-country:has(.scrolling-text)::after {
   content: '';
   position: absolute;
+  z-index: 1;
   height: 1em;
-  right: 0;
-  bottom: 0;
+  right: 50%;
+  bottom: 0.125em;
   left: 0;
-  background-image: linear-gradient(to right, #1b262c, #00000000);
+  background-image: linear-gradient(90deg, #1b262c, #00000000);
   background-repeat: no-repeat;
 }
 
 .region-country:has(.scrolling-text)::after {
-  background-image: linear-gradient(to left, #1b262c, #00000000);
+  right: 0;
+  left: 50%;
+  background-image: linear-gradient(270deg, #1b262c, #00000000);
 }
 
 @keyframes scroll {
   0% {
-    transform: translateX(-100%);
+    transform: translateX(calc(-100% - 1em));
   }
   100% {
-    transform: translateX(100%);
+    transform: translateX(calc(100% + 1em));
   }
 }
 
@@ -121,6 +124,7 @@
 
   .grid-item {
     width: calc(100% / 6);
+    height: 100%;
     flex-flow: column nowrap;
     justify-content: center;
   }
@@ -135,7 +139,16 @@
     border-bottom: 0;
   }
 
-  .country-name {
-    min-height: 5.0625em;
+  .region-country {
+    width: 100%;
+    text-align: center;
+  }
+
+  .time-date {
+    text-align: center;
+  }
+
+  .time {
+    font-size: 4em;
   }
 }

@@ -9,9 +9,9 @@ import {
   gridItem,
   gridWrapper,
   regionCountry,
+  scrollingText,
   time,
   timeDate,
-  scrollingText,
 } from './App.module.css';
 
 const { log } = console;
@@ -22,7 +22,7 @@ function App() {
     countries: [],
     currentTime: new Date(),
   });
-  const [shouldScroll, setShouldScroll] = React.useState(false);
+  const [scrollingIndexes, setScrollingIndexes] = React.useState([]);
 
   React.useEffect(() => {
     const fetchCountries = async () => {
@@ -50,26 +50,38 @@ function App() {
   }, [states.currentTime]);
 
   React.useEffect(() => {
-    const countryNameElement = document.querySelector(`.${countryName}`);
-    if (countryNameElement) {
-      setShouldScroll(
-        countryNameElement.scrollWidth > countryNameElement.clientWidth,
-      );
-    }
-  }, [states]);
+    const updatedIndexes = states.countries
+      .map((_, index) => {
+        const countryNameElement = document.getElementById(
+          `country-name${index}`,
+        );
+
+        if (
+          countryNameElement &&
+          countryNameElement.scrollWidth > countryNameElement.offsetWidth
+        ) {
+          return index;
+        }
+        return -1;
+      })
+      .filter((index) => index !== -1);
+
+    setScrollingIndexes(updatedIndexes);
+  }, [states, states.currentTime, states.countries, states.loading]);
 
   return (
     <ul className={gridWrapper}>
       {states.loading ? (
         <Loader />
       ) : (
-        states.countries.map((country) => (
+        states.countries.map((country, index) => (
           <li key={country.cca3} className={gridItem}>
             <div className={regionCountry}>
               <h2 className={countryRegion}>{country.region}</h2>
               <p
+                id={`country-name${index}`}
                 className={`${countryName}${
-                  shouldScroll ? ` ${scrollingText}` : ''
+                  scrollingIndexes.includes(index) ? ` ${scrollingText}` : ''
                 }`}
               >
                 {country.name}
