@@ -1,3 +1,5 @@
+const { log } = console;
+
 export default function formatTime(currentTime, timezone) {
   const localeTime = new Date(currentTime).toString();
   const localeOffsetParts = localeTime.match(/([+-])(\d{4})/);
@@ -16,7 +18,7 @@ export default function formatTime(currentTime, timezone) {
   );
 
   const offsetParts = timezone.match(/([+-])(\d{2}):(\d{2})/);
-  if (!offsetParts) return new Date();
+  if (!offsetParts) return { date: '', time: '' };
 
   const [, sign, hours, minutes] = offsetParts;
   const offsetMilliseconds =
@@ -27,5 +29,36 @@ export default function formatTime(currentTime, timezone) {
       (sign === '-' ? -offsetMilliseconds : offsetMilliseconds),
   );
 
-  return formattedTime.toLocaleTimeString().slice(0, 5);
+  const options = {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  };
+  const formattedDate = formattedTime.toLocaleDateString(undefined, options);
+
+  // Get the day of the month without leading zeros
+  const dayOfMonth = formattedTime.getDate();
+  let daySuffix;
+  if (dayOfMonth === 1 || dayOfMonth === 21 || dayOfMonth === 31) {
+    daySuffix = 'st';
+  } else if (dayOfMonth === 2 || dayOfMonth === 22) {
+    daySuffix = 'nd';
+  } else if (dayOfMonth === 3 || dayOfMonth === 23) {
+    daySuffix = 'rd';
+  } else {
+    daySuffix = 'th';
+  }
+
+  const formattedDateString = formattedDate.replace(
+    dayOfMonth.toString(),
+    `${dayOfMonth}${daySuffix} of`,
+  );
+
+  const formattedTimeString = formattedTime.toLocaleTimeString().slice(0, 5);
+
+  return {
+    date: formattedDateString.replace(` ${formattedTime.getUTCFullYear()}`, ''),
+    time: formattedTimeString,
+  };
 }

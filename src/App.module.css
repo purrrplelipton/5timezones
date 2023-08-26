@@ -1,9 +1,6 @@
 .title {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  font-size: 2.7em;
+  font-size: 4em;
+  margin: 0.5em 0;
   text-align: center;
   background-color: #1b262c;
 }
@@ -11,7 +8,6 @@
 .grid-wrapper {
   list-style-type: none;
   padding: 0;
-  margin-top: 4em;
   width: 100%;
   height: 100%;
   display: flex;
@@ -20,6 +16,7 @@
 }
 
 .grid-item {
+  height: calc(100% / 6);
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -36,24 +33,87 @@
   border-bottom: 1px solid hsla(0, 0%, 99%, 0.2);
 }
 
-.country-name {
-  font-size: 1.125em;
-  text-align: center;
-  min-height: 3.375em;
+.region-country {
+  max-width: 50%;
+  overflow: hidden;
   display: flex;
-  align-items: center;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  gap: 0.125em;
+  justify-content: center;
+  position: relative;
+}
+
+.country-region {
+  font-weight: 600;
+  font-size: 2em;
+}
+
+.country-name {
+  font-size: 1em;
+  line-height: 1.25;
+}
+
+.scrolling-text {
+  overflow: auto hidden;
+  white-space: nowrap;
+  animation: scroll 10s linear alternate infinite;
+}
+
+.region-country:has(.scrolling-text)::before,
+.region-country:has(.scrolling-text)::after {
+  content: '';
+  position: absolute;
+  height: 1em;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(to right, #1b262c, #00000000);
+  background-repeat: no-repeat;
+}
+
+.region-country:has(.scrolling-text)::after {
+  background-image: linear-gradient(to left, #1b262c, #00000000);
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.time-date {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  gap: 1.125em;
+  justify-content: center;
 }
 
 .time {
-  font-size: 1.875em;
+  font-size: 1.5em;
   font-weight: 200;
-  min-width: 5ch;
-  display: grid;
-  place-items: center;
+  text-align: center;
+}
+
+.date {
+  font-size: 0.75em;
+  font-weight: 400;
 }
 
 @media only screen and (min-width: 1024px) {
+  .title {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
   .grid-wrapper {
+    height: 100%;
     flex-flow: row nowrap;
     margin-top: 0;
     flex: 1;

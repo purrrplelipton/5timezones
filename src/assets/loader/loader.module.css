@@ -1,14 +1,17 @@
 .outer {
   display: inline-block;
-  position: relative;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 32px;
   height: 32px;
 }
 
 .inner {
   background-color: currentColor;
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   position: absolute;
   top: 0;
   left: 0;
@@ -21,13 +24,13 @@
 
 @keyframes wander {
   25% {
-    transform: translateX(20px) rotate(-90deg) scale(0.5);
+    transform: translateX(22px) rotate(-90deg) scale(0.5);
   }
   50% {
-    transform: translateX(20px) translateY(20px) rotate(-180deg);
+    transform: translateX(22px) translateY(22px) rotate(-180deg);
   }
   75% {
-    transform: translateX(0) translateY(20px) rotate(-270deg) scale(0.5);
+    transform: translateX(0) translateY(22px) rotate(-270deg) scale(0.5);
   }
   100% {
     transform: rotate(-1turn);
